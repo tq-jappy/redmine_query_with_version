@@ -17,6 +17,5 @@
 <% end %>
 
 <p>
-<%=# FIXME %>
 <%= select :fixed_version_id, :name, Version.visible.all.map {|t| [t.name, t.id]}, :include_blank => true %>
 </p>
