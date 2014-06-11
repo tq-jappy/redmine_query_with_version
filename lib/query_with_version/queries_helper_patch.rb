@@ -16,6 +16,9 @@ module QueryWithVersion
     module InstanceMethods
       def retrieve_query_with_version
         retrieve_query_without_version
+        if params[:query_id].present? and params[:fixed_version_id].present?
+          @query.add_filter("fixed_version_id", "=", [params[:fixed_version_id]])
+        end
       end
     end
   end
