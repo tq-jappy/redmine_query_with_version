@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<%= javascript_tag do %>
   $("#sidebar a[class*=query]").on("click", function() {
     var href = $(this).attr("href");
     var versionId = $("#fixed_version_id_name").val()
@@ -8,7 +8,7 @@
     location.href = href;
     return false;
   });
-</script>
+<% end %>
 
 <p>
 <%= select :fixed_version_id, :name, Version.visible.all.map {|t| [t.name, t.id]}, :include_blank => true %>
