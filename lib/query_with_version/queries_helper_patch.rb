@@ -20,8 +20,12 @@ module QueryWithVersion
         if params[:query_id].present? and params[:fixed_version_id].present?
           session[:query][:fixed_version_id] = params[:fixed_version_id]
           @query.add_filter("fixed_version_id", "=", [params[:fixed_version_id]])
+
+          @querying_version = Version.find(params[:fixed_version_id])
         elsif !query_built_from_params? && session[:query][:fixed_version_id]
           @query.add_filter("fixed_version_id", "=", [session[:query][:fixed_version_id]])
+
+          @querying_version = Version.find(session[:query][:fixed_version_id])
         end
       end
      

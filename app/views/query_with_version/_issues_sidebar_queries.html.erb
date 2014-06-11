@@ -8,8 +8,15 @@
     location.href = href;
     return false;
   });
+
+  $(function() {
+    <% if @querying_version %>
+      $("#content h2").append(" (<%= j @querying_version.name %>)");
+    <% end %>
+  });
 <% end %>
 
 <p>
+<%=# FIXME %>
 <%= select :fixed_version_id, :name, Version.visible.all.map {|t| [t.name, t.id]}, :include_blank => true %>
 </p>
