@@ -1,0 +1,15 @@
+<script type="text/javascript">
+  $("#sidebar a[class*=query]").on("click", function() {
+    var href = $(this).attr("href");
+    var versionId = $("#fixed_version_id_name").val()
+    if (versionId) {
+      href += "&fixed_version_id=" + versionId;
+    }
+    location.href = href;
+    return false;
+  });
+</script>
+
+<p>
+<%= select :fixed_version_id, :name, Version.visible.all.map {|t| [t.name, t.id]}, :include_blank => true %>
+</p>

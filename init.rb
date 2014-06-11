@@ -15,4 +15,4 @@ Redmine::Plugin.register :redmine_query_with_version do
   end
 end
 
-require 'selectable_query'
+require 'query_with_version'
