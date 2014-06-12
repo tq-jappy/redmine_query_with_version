@@ -22,12 +22,11 @@ class QueriesHelperTest < ActionView::TestCase
     User.current = User.find(1)
     @project = Project.find(1)
     @params = {:query_id => 1, :fixed_version_id => 1}
+
     retrieve_query
 
     filters = @query.filters
-
     assert_equal filters["fixed_version_id"], {:operator => "=", :values => [1]}
-
     assert_equal session[:query][:id], 1
     assert_equal session[:query][:fixed_version_id], 1
   end
