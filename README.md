@@ -3,14 +3,16 @@ Redmine Query with Version
 
 Redmine plugin to search issues by a custom query and any version.
 
-## Installation
+![screenshot](https://raw.github.com/tq-jappy/redmine_query_with_version/master/screenshots/screenshot.png)
 
-Run following commands and then restart your redmine.
+## Installation
 
 ```
 $ cd {REDMINE_ROOT}/plugins
 $ git clone https://github.com/tq-jappy/redmine_query_with_version.git
 ```
+
+After clone the repository, start Redmine!
 
 ## Uninstallation
 
@@ -18,11 +20,11 @@ $ git clone https://github.com/tq-jappy/redmine_query_with_version.git
 $ rm -f {REDMINE_ROOT}/plugins/redmine_query_with_version
 ```
 
-## How to use
+## How to Use
 
-1. Go to an issues page.
-2. Select target version and click custom query name in the sidebar. 
-NOTE: If you choose blank (default), this plugin does not affects the Redmine.
+1. Go to an project issues page: ``/project/{project_identifier}/issues``
+2. Select the target version, and click custom query name link in the sidebar. 
+NOTE: If you choose blank option(default), this plugin do nothing.
 
 ## Contributions
 
