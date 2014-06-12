@@ -26,6 +26,13 @@ $ rm -f {REDMINE_ROOT}/plugins/redmine_query_with_version
 2. Select any one of versions, and click custom query name link in the sidebar.   
 NOTE: If you choose blank version (default), this plugin do nothing.
 
+## How to Run Tests
+
+```
+$ cd {REDMINE_ROOT}
+$ bundle exec rake redmine:plugins:test NAME=redmine_query_with_version
+```
+
 ## Contributions
 
 All feedback and contributions are welcome. Simply issue a pull request or create a new issue.
