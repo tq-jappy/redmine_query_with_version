@@ -23,12 +23,18 @@ $ rm -f {REDMINE_ROOT}/plugins/redmine_query_with_version
 ## How to Use
 
 1. Go to an project issues page: ``/project/{project_identifier}/issues``
-2. Select the target version, and click custom query name link in the sidebar. 
-NOTE: If you choose blank option(default), this plugin do nothing.
+2. Select any one of versions, and click custom query name link in the sidebar.   
+NOTE: If you choose blank version (default), this plugin do nothing.
 
 ## Contributions
 
 All feedback and contributions are welcome. Simply issue a pull request or create a new issue.
+
+## Change Log
+
+### 0.1.0
+
+- Initial version
 
 ## License
 
