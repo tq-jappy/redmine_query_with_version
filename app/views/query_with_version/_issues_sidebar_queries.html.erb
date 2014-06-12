@@ -1,7 +1,7 @@
 <%= javascript_tag do %>
   $("#sidebar a[class*=query]").on("click", function() {
     var href = $(this).attr("href");
-    var versionId = $("#fixed_version_id_name").val()
+    var versionId = $("#query_with_version_fixed_version_id").val()
     if (versionId) {
       href += "&fixed_version_id=" + versionId;
     }
@@ -11,11 +11,13 @@
 
   $(function() {
     <% if @querying_version %>
-      $("#content h2").append(" (<%= j @querying_version.name %>)");
+      $("#content h2").append(" (<%= j t(:field_fixed_version) %>: <%= j @querying_version.name %>)");
     <% end %>
   });
 <% end %>
 
 <p>
-<%= select :fixed_version_id, :name, Version.visible.all.map {|t| [t.name, t.id]}, :include_blank => true %>
+<%= t(:field_fixed_version) %>
+<%= collection_select :query_with_version, :fixed_version_id, Version.visible.all, :id, :name,
+  {:include_blank => true, :selected => @querying_version.try(:id) || ""} %>
 </p>
