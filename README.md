@@ -1,12 +1,22 @@
 Redmine Query with Version
 ==========================
 
-Redmine plugin to search issues by a custom query and any version (WIP)
+Redmine plugin to search issues by a custom query and any version.
 
 ## Installation
 
-1. Navigate to your `{REDMINE_ROOT}/plugins` and `git clone git://github.com/tq-jappy/redmine_query_with_version.git`
-2. Restart your redmine.
+```
+$ cd {REDMINE_ROOT}/plugins
+$ git clone https://github.com/tq-jappy/redmine_query_with_version.git
+```
+
+Restart your redmine.
+
+## Uninstallation
+
+```
+$ rm -f {REDMINE_ROOT}/plugins/redmine_query_with_version
+```
 
 ## Contributions
 
