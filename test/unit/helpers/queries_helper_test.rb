@@ -16,33 +16,87 @@ class QueriesHelperTest < ActionView::TestCase
   def setup
     @session = nil
     @params = nil
+    User.current = User.find(1)
   end
 
   context "QueriesHelper#retrieve_query" do
-    context "with query_id and fixed_version_id given" do
+    context "context with project" do
       setup do
-        User.current = User.find(1)
         @project = Project.find(1)
-        @params = {:query_id => 1, :fixed_version_id => 1}
       end
 
-      should "return query with filter fixed_version_id" do
-        retrieve_query
+      context "and params(query id, fixed version id)" do
+        setup do
+          @params = {:query_id => 1, :fixed_version_id => 1}
 
-        filters = @query.filters
-        assert_equal filters["fixed_version_id"], {:operator => "=", :values => [1]}
+          retrieve_query
+        end
+
+        should "return query with filter fixed_version_id" do
+          assert_equal @query.filters["fixed_version_id"], {:operator => "=", :values => [1]}
+        end
+
+        should "store session query" do
+          assert_equal session[:query][:id], 1
+        end
+
+        should "store session fixed_version_id in the query" do
+          assert_equal session[:query][:fixed_version_id], 1
+        end
+
+        should "set @querying_version" do
+          assert_equal @querying_version, Version.find(1)
+        end
       end
 
-      should "store session query" do
-        retrieve_query
+      context "and params(query id only)" do
+        setup do
+          @params = {:query_id => 1}
 
-        assert_equal session[:query][:id], 1
+          retrieve_query
+        end
+
+        should "store session query" do
+          assert_equal session[:query][:id], 1
+        end
+
+        should "return query without fixed_version_id" do
+          assert_nil @query.filters["fixed_version_id"]
+        end
+
+        should "not set @querying_version" do
+          assert_nil @querying_version
+        end
+      end
+    end
+
+    context "context without project" do
+      setup do
+        @project = nil
       end
 
-      should "store session fixed_version_id in the query" do
-        retrieve_query
+      context "and params(query id, fixed version id)" do
+        setup do
+          @params = {:query_id => 3, :fixed_version_id => 1}
 
-        assert_equal session[:query][:fixed_version_id], 1
+          retrieve_query
+        end
+
+        should "return query with filter fixed_version_id" do
+          assert_equal @query.filters["fixed_version_id"], {:operator => "=", :values => [1]}
+        end
+
+        should "store session query" do
+          assert_equal session[:query][:id], 3
+        end
+
+        should "store session fixed_version_id in the query" do
+          assert_equal session[:query][:fixed_version_id], 1
+        end
+
+        should "set @querying_version" do
+          assert_equal @querying_version, Version.find(1)
+        end
       end
     end
   end
