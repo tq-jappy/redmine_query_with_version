@@ -16,7 +16,7 @@
   });
 <% end %>
 
-<% if sidebar_queries.any? %>
+<% if @project and sidebar_queries.any? %>
 <p>
 <%= t(:field_fixed_version) %>
 <%= collection_select :query_with_version, :fixed_version_id, Version.visible.all, :id, :name,
