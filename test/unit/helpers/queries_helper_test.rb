@@ -18,17 +18,33 @@ class QueriesHelperTest < ActionView::TestCase
     @params = nil
   end
 
-  def test_query_should_be_retrieved_and_session_stored_with_query_id_and_fixed_version_id
-    User.current = User.find(1)
-    @project = Project.find(1)
-    @params = {:query_id => 1, :fixed_version_id => 1}
+  context "QueriesHelper#retrieve_query" do
+    context "with query_id and fixed_version_id given" do
+      setup do
+        User.current = User.find(1)
+        @project = Project.find(1)
+        @params = {:query_id => 1, :fixed_version_id => 1}
+      end
 
-    retrieve_query
+      should "return query with filter fixed_version_id" do
+        retrieve_query
 
-    filters = @query.filters
-    assert_equal filters["fixed_version_id"], {:operator => "=", :values => [1]}
-    assert_equal session[:query][:id], 1
-    assert_equal session[:query][:fixed_version_id], 1
+        filters = @query.filters
+        assert_equal filters["fixed_version_id"], {:operator => "=", :values => [1]}
+      end
+
+      should "store session query" do
+        retrieve_query
+
+        assert_equal session[:query][:id], 1
+      end
+
+      should "store session fixed_version_id in the query" do
+        retrieve_query
+
+        assert_equal session[:query][:fixed_version_id], 1
+      end
+    end
   end
 
   private
