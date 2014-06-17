@@ -43,6 +43,10 @@ All feedback and contributions are welcome. Simply issue a pull request or creat
 
 - Initial version
 
+### 0.1.1
+
+- Hide a version select box when project or custom query is empty.
+
 ## License
 
 This plugin is open source and released under the terms of the [GNU General Public License v2](http://www.gnu.org/licenses/gpl-2.0.txt) (GPL).
